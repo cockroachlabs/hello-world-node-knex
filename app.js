@@ -3,12 +3,14 @@ import Knex from "knex";
 const config = {
   client: "cockroachdb",
   connection: {
-    user: "root",
-    password: "",
-    database: "bank",
-    host: "localhost",
+    user: "<user>",
+    password: "<password>",
+    database: "<cluster>.defaultdb",
+    host: "free-tier.<region>.cockroachlabs.cloud",
     port: 26257,
-    ssl: false,
+    ssl: {
+      ca: fs.readFileSync(process.env.HOME+'/.postgresql/root.crt').toString()
+    },
   },
   migrations: {
     directory: "migration/migrations",
